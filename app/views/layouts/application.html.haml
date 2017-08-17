@@ -7,5 +7,13 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    %h1 Family Friday
-    = yield
+    = nav_bar brand: "Family Friday", responsive: true do
+      = menu_group do
+        = menu_item 'Groups', root_path
+        = menu_divider
+        = menu_item 'Team Members', team_members_path
+
+    .container
+      = bootstrap_flash
+    .container
+      = yield

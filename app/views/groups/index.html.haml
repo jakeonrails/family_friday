@@ -1,7 +1,8 @@
 %h4 Refresh to generate a new list of groups!
 
 - @groups.each_with_index do |group, index|
-  %h3= "Group #{index + 1}"
-  %ul
-    - group.each do |team_member|
-      %li= team_member.full_name
+  .group.pull-left
+    %h3= "Group #{index + 1}"
+    %ul
+      - group.each do |team_member|
+        %li= team_member.full_name

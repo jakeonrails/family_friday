@@ -1,16 +1,15 @@
-= form_for @team_member do |f|
-  - if @team_member.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@team_member.errors.count, "error")} prohibited this team_member from being saved:"
-      %ul
-        - @team_member.errors.full_messages.each do |message|
-          %li= message
-
-  .field
-    = f.label :first_name
-    = f.text_field :first_name
-  .field
-    = f.label :last_name
-    = f.text_field :last_name
-  .actions
-    = f.submit 'Save'
+= form_for @team_member, html: { class: "form form-horizontal team_member" } do |f|
+  .form-group
+    = f.label :first_name, class: 'control-label col-lg-2'
+    .col-lg-10
+      = f.text_field :first_name, class: 'form-control', required: true
+    = f.error_span(:first_name)
+  .form-group
+    = f.label :last_name, class: 'control-label col-lg-2'
+    .col-lg-10
+      = f.text_field :last_name, class: 'form-control', required: true
+    = f.error_span(:last_name)
+  .form-group
+    .col-lg-offset-2.col-lg-10
+      = f.submit nil,class: 'btn btn-primary'
+      = link_to t('.cancel', :default => t("helpers.links.cancel")), team_members_path, :class => 'btn btn-default'

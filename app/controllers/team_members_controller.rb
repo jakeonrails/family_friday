@@ -28,7 +28,7 @@ class TeamMembersController < ApplicationController
 
     respond_to do |format|
       if @team_member.save
-        format.html { redirect_to @team_member, notice: 'Team member was successfully created.' }
+        format.html { redirect_to action: :index, notice: 'Team member was successfully created.' }
         format.json { render :show, status: :created, location: @team_member }
       else
         format.html { render :new }
