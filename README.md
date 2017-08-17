@@ -1,24 +1,19 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This tool helps your team to bond over lunches.
 
-Things you may want to cover:
+It groups your team into groups between 3 and 5.
 
-* Ruby version
+There is currently no authentication.
 
-* System dependencies
+You can currently add, edit, or remove team members, and view a page that lists
+the random groupings of teammates.
 
-* Configuration
+Refreshing the group list generates a new random list of groupings.
 
-* Database creation
+Potential new features:
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- authentication
+- teams organized under one company account
+- widgets to display nearby lunch places
+- persistent groupings that can be shared with a unique URL
