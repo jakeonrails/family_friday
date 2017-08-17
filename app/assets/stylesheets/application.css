@@ -13,3 +13,11 @@
  *= require_tree .
  *= require_self
  */
+
+.group ul {
+    height: 7ex;
+}
+
+.group li {
+    width: 10em;
+}
