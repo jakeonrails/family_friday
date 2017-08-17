@@ -4,7 +4,7 @@ class TeamMembersController < ApplicationController
   # GET /team_members
   # GET /team_members.json
   def index
-    @team_members = TeamMember.all
+    @team_members = TeamMember.order(:first_name, :last_name).all
   end
 
   # GET /team_members/1
@@ -43,7 +43,8 @@ class TeamMembersController < ApplicationController
     respond_to do |format|
       if @team_member.update(team_member_params)
         format.html { redirect_to @team_member, notice: 'Team member was successfully updated.' }
-        format.json { render :show, status: :ok, location: @team_member }
+        format.json { head :ok }
+        # format.json { render :show, status: :ok, location: @team_member }
       else
         format.html { render :edit }
         format.json { render json: @team_member.errors, status: :unprocessable_entity }
@@ -61,6 +62,11 @@ class TeamMembersController < ApplicationController
     end
   end
 
+  def reset
+    TeamMember.update_all(available: true)
+    redirect_to action: :index
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_team_member
@@ -69,6 +75,6 @@ class TeamMembersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def team_member_params
-      params.require(:team_member).permit(:first_name, :last_name)
+      params.require(:team_member).permit(:first_name, :last_name, :available)
     end
 end

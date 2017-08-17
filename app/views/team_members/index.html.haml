@@ -1,6 +1,9 @@
 - model_class = TeamMember
 .page-header
   %h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
+  = link_to "Mark everyone as available", reset_team_members_path, remote: true, method: :post, class: 'btn btn-success'
+
+
 %table.table.table-striped
   %thead
     %tr
@@ -8,6 +11,7 @@
       %th= model_class.human_attribute_name(:first_name)
       %th= model_class.human_attribute_name(:last_name)
       %th= model_class.human_attribute_name(:created_at)
+      %th= model_class.human_attribute_name(:available)
       %th=t '.actions', :default => t("helpers.actions")
   %tbody
     - @team_members.each do |team_member|
@@ -16,6 +20,10 @@
         %td= team_member.first_name
         %td= team_member.last_name
         %td=l team_member.created_at
+        %td
+          = form_for team_member do |f|
+            = f.check_box :available, class: 'availability_toggle'
+
         %td
           = link_to t('.show', :default => t("helpers.links.show")), team_member_path(team_member), :class => 'btn btn-default btn-xs'
           = link_to t('.edit', :default => t("helpers.links.edit")), edit_team_member_path(team_member), :class => 'btn btn-default btn-xs'

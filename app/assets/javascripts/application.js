@@ -14,3 +14,21 @@
 //= require jquery
 //= require turbolinks
 //= require_tree .
+
+$(document).on('turbolinks:load', function() {
+  $('.availability_toggle').change(function() {
+    var $form = $(this).parent('form');
+    var valuesToSubmit = $form.serialize();
+
+    $.ajax({
+        type: "POST",
+        url: $form.attr('action'), //sumbits it to the given url of the form
+        data: valuesToSubmit,
+        dataType: "JSON" // you want a difference between normal and ajax-calls, and json is standard
+    }).success(function(json){
+        console.log("success", json);
+    });
+    // return false; // prevents normal behaviour
+  });
+});
+
